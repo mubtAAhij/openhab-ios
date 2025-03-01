@@ -17,6 +17,8 @@ jobs:
 
       - name: Install dependencies
         run: bundle install --redownload
+      - name: List available simulators
+        run: xcrun simctl list
       - name: Boot Simulator
         run: |
           xcrun simctl boot "51C4E281-1F04-4BE9-9392-8499B31B9351"
