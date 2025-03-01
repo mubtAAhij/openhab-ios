@@ -26,7 +26,4 @@ jobs:
           LANG: en_US.UTF-8
           LC_ALL: en_US.UTF-8
           FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT: 60
-        uses: maierj/fastlane-action@v3.1.0
-        with:
-          lane: unittests
-          options: "--destination 'platform=iOS Simulator,name=iPhone 16,OS=latest'"
+        run: bundle exec fastlane unittests --destination 'platform=iOS Simulator,name=iPhone 15,OS=latest'
