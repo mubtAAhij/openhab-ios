@@ -202,7 +202,7 @@ platform :ios do
         # push bump commit
         ensure_git_status_clean(
             show_diff: true,
-            ignore_files: ["openHAB.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"]
+            ignore_files: ["openHAB.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved", "vendor/"]
         )
         push_to_git_remote
 
