@@ -233,7 +233,6 @@ public final class NetworkTracker: ObservableObject {
         }
     }
 
-    
     private func setActiveConnection(_ connection: ConnectionInfo?) {
         os_log("Network status: setActiveConnection: %{PUBLIC}@", log: OSLog.default, type: .info, connection?.configuration.url ?? "no connection")
         guard activeConnection != connection else { return }

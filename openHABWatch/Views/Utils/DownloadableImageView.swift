@@ -1,25 +1,26 @@
+// Copyright (c) 2010-2025 Contributors to the openHAB project
 //
-//  DownloadableImageView.swift
-//  openHAB
+// See the NOTICE file(s) distributed with this work for additional
+// information.
 //
-//  Created by Daniel Cunningham on 2/23/25.
-//  Copyright © 2025 openHAB e.V. All rights reserved.
+// This program and the accompanying materials are made available under the
+// terms of the Eclipse Public License 2.0 which is available at
+// http://www.eclipse.org/legal/epl-2.0
 //
+// SPDX-License-Identifier: EPL-2.0
 
-
-import SwiftUI
+import OpenHABCore
 import SDWebImage
 import SDWebImageSVGCoder
-import OpenHABCore
+import SwiftUI
 import WatchKit
-
 
 struct DownloadableImageView: View {
     let url: URL?
     @StateObject private var imageLoader = SVGImageLoader()
     @State private var isLoading = true
     @State private var task: URLSessionTask?
-    
+
     var body: some View {
         Group {
             if let uiImage = imageLoader.uiImage {
@@ -41,45 +42,45 @@ struct DownloadableImageView: View {
         .onDisappear { cancelDownload() }
         .scaledToFit()
     }
-    
+
     private func fetchImage() {
         print("Fetching Image from \(String(describing: url))")
-        guard let url = url else {
+        guard let url else {
             print("fetchImage() skipped: URL is nil")
             isLoading = false
             return
         }
-        
+
         // Check cache first
         if let cachedImage = ImageCacheManager.shared.getCachedImage(for: url) {
             print("Loaded from cache: \(url)")
-            self.imageLoader.updateImage(cachedImage)
+            imageLoader.updateImage(cachedImage)
             return
         }
-        
+
         print("Fetching fresh image from \(url)")
-        task = NetworkTracker.shared.httpClient?.doGet(baseURL: url, path: nil) { data, response, error in
+        task = NetworkTracker.shared.httpClient?.doGet(baseURL: url, path: nil) { data, _, error in
             DispatchQueue.main.async {
-                self.isLoading = false
-                guard let data = data, error == nil else { return }
-                
+                isLoading = false
+                guard let data, error == nil else { return }
+
                 let scaleFactor = WKInterfaceDevice.current().screenScale
                 let options: [SDImageCoderOption: Any] = [
                     .decodeScaleFactor: scaleFactor,
                     .decodeThumbnailPixelSize: CGSize(width: 200, height: 200)
                 ]
-                
+
                 if let image = SDImageCodersManager.shared.decodedImage(with: data, options: options) {
                     print("Downloaded and decoded image from \(url)")
                     ImageCacheManager.shared.cacheImage(image, for: url) // Cache it
-                    self.imageLoader.updateImage(image)
+                    imageLoader.updateImage(image)
                 } else {
                     print("Image decoding failed")
                 }
             }
         }
     }
-    
+
     private func cancelDownload() {
         task?.cancel()
         task = nil
@@ -88,7 +89,7 @@ struct DownloadableImageView: View {
 
 class SVGImageLoader: ObservableObject {
     @Published var uiImage: UIImage?
-    
+
     func updateImage(_ image: UIImage?) {
         DispatchQueue.main.async {
             self.uiImage = image
@@ -98,25 +99,25 @@ class SVGImageLoader: ObservableObject {
 
 class ImageCacheManager {
     static let shared = ImageCacheManager()
-    
+
     private let cache = NSCache<NSURL, CachedImage>()
     private let expirationTime: TimeInterval = 300 // 5 minutes
-    
+
     private init() {}
-    
+
     func getCachedImage(for url: URL) -> UIImage? {
         guard let cachedImage = cache.object(forKey: url as NSURL) else {
             return nil
         }
-        
+
         if Date().timeIntervalSince(cachedImage.timestamp) > expirationTime {
             cache.removeObject(forKey: url as NSURL) // Expired, remove it
             return nil
         }
-        
+
         return cachedImage.image
     }
-    
+
     func cacheImage(_ image: UIImage, for url: URL) {
         let cachedImage = CachedImage(image: image, timestamp: Date())
         cache.setObject(cachedImage, forKey: url as NSURL)
@@ -127,7 +128,7 @@ class ImageCacheManager {
 class CachedImage: NSObject {
     let image: UIImage
     let timestamp: Date
-    
+
     init(image: UIImage, timestamp: Date) {
         self.image = image
         self.timestamp = timestamp

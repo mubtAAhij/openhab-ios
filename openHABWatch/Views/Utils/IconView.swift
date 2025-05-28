@@ -36,7 +36,7 @@ struct IconView: View {
     var body: some View {
         DownloadableImageView(url: iconURL)
             .transition(.fade(duration: 0.3))
-        .frame(width: 20.0, height: 20.0).id(iconURL?.absoluteString ?? "")
+            .frame(width: 20.0, height: 20.0).id(iconURL?.absoluteString ?? "")
     }
 }
 
