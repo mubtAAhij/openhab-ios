@@ -72,4 +72,3 @@ jobs:
         with:
           lane: beta
           options: '{ "bump": "${{ github.event.inputs.bump_type }}" }'
-          skip-tracking: true
