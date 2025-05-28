@@ -8,8 +8,11 @@ on:
       bump_type:
         type: choice
         description: 'Select version bump type:'
-        options: [none, patch, minor, major]
-        default: patch
+        options:
+        - none
+        - patch
+        - minor
+        - major
 
 jobs:
   build_and_deploy:
