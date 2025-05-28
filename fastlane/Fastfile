@@ -197,7 +197,7 @@ platform :ios do
         end
 
         sh("echo '📋 Git status before ensure_git_status_clean:'")
-        sh("git status --untracked-files=all --short")
+        sh("git status --untracked-files=all --short", log: true)
 
         # push bump commit
         ensure_git_status_clean(
