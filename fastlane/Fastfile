@@ -213,6 +213,7 @@ platform :ios do
         
         branch = resolve_current_branch
         sh("git pull origin #{branch} --rebase")
+
         push_to_git_remote
 
         # tag if not a feature build
