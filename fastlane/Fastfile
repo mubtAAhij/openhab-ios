@@ -204,6 +204,8 @@ platform :ios do
             show_diff: true,
             ignore_files: ["openHAB.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved", "vendor/"]
         )
+
+        sh("git pull origin #{branch_name} --rebase")
         push_to_git_remote
 
         # tag if not a feature build
