@@ -69,22 +69,28 @@ platform :ios do
             package_path: "OpenHABCore"
         )
     end
+    
+    def resolve_current_branch
+      branch = if is_ci?
+        ENV["BRANCH_NAME"]
+      else
+        sh("git branch --show-current").strip
+      end
+
+      if branch.nil? || branch.empty?
+        UI.user_error!("Unable to determine current git branch.")
+      end
+
+      branch
+    end
 
     desc 'Build beta'
     lane :beta do |options|
         options[:bump] = options[:bump] != nil ? options[:bump] : "patch"
 
-        if is_ci?
-            current_branch = ENV["BRANCH_NAME"]
-        else
-            current_branch = sh("git branch --show-current")
-        end
+        current_branch = resolve_current_branch
 
-        if current_branch != "develop"
-            options[:isfeaturebuild] = true
-        else
-            options[:isfeaturebuild] = false
-        end
+        options[:isfeaturebuild] = current_branch != "develop"
 
         # ensure branch is clean
         ensure_git_status_clean
@@ -204,6 +210,9 @@ platform :ios do
             show_diff: true,
             ignore_files: ["openHAB.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved", "vendor/"]
         )
+        
+        branch = resolve_current_branch
+        sh("git pull origin #{branch} --rebase")
         push_to_git_remote
 
         # tag if not a feature build
