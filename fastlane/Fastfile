@@ -83,6 +83,15 @@ platform :ios do
 
       branch
     end
+    
+    def ensure_fully_clean_git_state!
+      status = sh("git status --porcelain").strip
+      unless status.empty?
+        UI.error("Git working directory is not clean:")
+        UI.message(status)
+        UI.user_error!("Please commit, stash, or clean all changes before continuing.")
+      end
+    end
 
     desc 'Build beta'
     lane :beta do |options|
@@ -211,6 +220,11 @@ platform :ios do
             ignore_files: ["openHAB.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved", "vendor/"]
         )
         
+        UI.message("Checking for clean working directory before pull...")
+        ensure_fully_clean_git_state!
+        
+        sh("git stash --include-untracked")
+
         branch = resolve_current_branch
         sh("git pull origin #{branch} --rebase")
 
