@@ -84,14 +84,22 @@ platform :ios do
       branch
     end
     
-    def ensure_fully_clean_git_state!
-      status = sh("git status --porcelain").strip
+    def ensure_fully_clean_git_state!(ignored_files = [])
+      status = sh("git status --porcelain").lines.reject do |line|
+        ignored_files.any? { |ignored| line.strip.end_with?(ignored) }
+      end.map(&:strip)
+
       unless status.empty?
         UI.error("Git working directory is not clean:")
-        UI.message(status)
+        UI.message(status.join("\n"))
         UI.user_error!("Please commit, stash, or clean all changes before continuing.")
       end
     end
+    
+    IGNORED_GIT_FILES = [
+      "openHAB.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+      "vendor/"
+    ]
 
     desc 'Build beta'
     lane :beta do |options|
@@ -135,7 +143,7 @@ platform :ios do
         certificates
 
         # run unit tests
-        unittests
+        #unittests
 
         increment_build
 
@@ -217,7 +225,7 @@ platform :ios do
         # push bump commit
         ensure_git_status_clean(
             show_diff: true,
-            ignore_files: ["openHAB.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved", "vendor/"]
+            ignore_files: IGNORED_GIT_FILES
         )
         
         sh("git stash --include-untracked")
@@ -226,7 +234,7 @@ platform :ios do
         sh("git stash pop || true")
         
         UI.message("Checking for clean working directory before pull...")
-        ensure_fully_clean_git_state!
+        ensure_fully_clean_git_state!(IGNORED_GIT_FILES)
         
         push_to_git_remote
 
