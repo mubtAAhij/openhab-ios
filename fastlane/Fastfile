@@ -220,14 +220,14 @@ platform :ios do
             ignore_files: ["openHAB.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved", "vendor/"]
         )
         
+        sh("git stash --include-untracked")
+        branch = resolve_current_branch
+        sh("git pull origin #{branch} --rebase")
+        sh("git stash pop || true")
+        
         UI.message("Checking for clean working directory before pull...")
         ensure_fully_clean_git_state!
         
-        sh("git stash --include-untracked")
-
-        branch = resolve_current_branch
-        sh("git pull origin #{branch} --rebase")
-
         push_to_git_remote
 
         # tag if not a feature build
