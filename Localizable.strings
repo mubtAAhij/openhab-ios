@@ -1,0 +1,20 @@
+// Localizable.strings
+"enter_local_server_url" = "Enter URL of local server";
+"enter_remote_server_url" = "Enter URL of remote server";
+"enter_username_if_required" = "Enter username on server, if required";
+"enter_server_password" = "Enter password on server";
+"ignore_ssl_certificates" = "Ignore SSL certificates";
+"always_allow_webrtc" = "Always allow WebRTC";
+"default_path" = "Default Path";
+"sitemap_for_apple_watch" = "Sitemap For Apple Watch";
+"save" = "Save";
+"no_data_received" = "No data received";
+"unknown_message_text" = "Unknown Message Text";
+"preferences" = "Preferences";
+"debug" = "Debug";
+"waiting" = "Waiting...";
+"refreshing" = "Refreshing...";
+"nothing_found" = "Nothing found";
+"loading" = "Loading...";
+"invalid_calendar" = "Invalid calendar";
+"picker" = "Picker";
