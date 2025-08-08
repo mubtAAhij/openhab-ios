@@ -61,7 +61,7 @@ struct SettingsView: View {
         Form {
             Section(header: Text(LocalizedStringKey("openhab_connection"))) {
                 Toggle(isOn: $settingsDemomode) {
-                    Text("Demo Mode")
+                    Text(String(localized: "demo_mode", comment: "Demo mode toggle label"))
                 }
 
                 if !settingsDemomode {
@@ -79,7 +79,7 @@ struct SettingsView: View {
                     } label: {
                         Text("Local URL")
                         if settingsLocalUrl.isEmpty {
-                            Text("Enter URL of local server")
+                            Text("String(localized: "enter_local_server_url", comment: "Placeholder text for local server URL input field")")
                         }
                     }
 
@@ -97,7 +97,7 @@ struct SettingsView: View {
                     } label: {
                         Text("Remote URL")
                         if settingsRemoteUrl.isEmpty {
-                            Text("Enter URL of remote server")
+                            Text("String(localized: "enter_remote_server_url", comment: "Placeholder text for remote server URL input field")")
                         }
                     }
 
@@ -113,7 +113,7 @@ struct SettingsView: View {
                     } label: {
                         Text("Username")
                         if settingsUsername.isEmpty {
-                            Text("Enter username on server, if required")
+                            Text("String(localized: "enter_username_if_required", comment: "Placeholder text for username input field")")
                         }
                     }
 
@@ -130,7 +130,7 @@ struct SettingsView: View {
                     } label: {
                         Text("Password")
                         if settingsPassword.isEmpty {
-                            Text("Enter password on server")
+                            Text("String(localized: "enter_server_password", comment: "Placeholder text for password input field")")
                         }
                     }
 
@@ -142,7 +142,7 @@ struct SettingsView: View {
 
             Section(header: Text(LocalizedStringKey("application_settings"))) {
                 Toggle(isOn: $settingsIgnoreSSL) {
-                    Text("Ignore SSL certificates")
+                    Text("String(localized: "ignore_ssl_certificates", comment: "Settings toggle for ignoring SSL certificates")")
                 }
 
                 Toggle(isOn: $settingsIdleOff) {
@@ -197,7 +197,7 @@ struct SettingsView: View {
 
             Section(header: Text(LocalizedStringKey("mainui_settings"))) {
                 Toggle(isOn: $settingsAlwaysAllowWebRTC) {
-                    Text("Always allow WebRTC")
+                    Text("String(localized: "always_allow_webrtc", comment: "Settings toggle for always allowing WebRTC")")
                 }
 
                 LabeledContent {
@@ -229,7 +229,7 @@ struct SettingsView: View {
                     }
 
                 } label: {
-                    Text("Default Path")
+                    Text("String(localized: "default_path", comment: "Settings label for default path configuration")")
                 }
 
                 Button {
@@ -283,7 +283,7 @@ struct SettingsView: View {
                         Text(sitemap.label)
                     }
                 } label: {
-                    Text("Sitemap For Apple Watch")
+                    Text("String(localized: "sitemap_for_apple_watch", comment: "Settings picker label for Apple Watch sitemap selection")")
                 }
             }
 
@@ -310,7 +310,7 @@ struct SettingsView: View {
         .navigationBarTitle("Settings")
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
-                Button("Save") {
+                Button("String(localized: "save", comment: "Save button in settings")") {
                     saveSettings()
                     appData?.sitemapViewController?.pageUrl = ""
                     NotificationCenter.default.post(name: NSNotification.Name("org.openhab.preferences.saved"), object: nil)
