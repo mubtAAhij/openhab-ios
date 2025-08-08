@@ -22,7 +22,7 @@ struct ContentView: View {
         ZStack {
             ScrollView {
                 HStack {
-                    Text(viewModel.openHABSitemapPage?.title ?? "Waiting...")
+                    Text(viewModel.openHABSitemapPage?.title ?? String(localized: "waiting", comment: "Loading state text while waiting for data"))
                         .font(.body)
                         .lineLimit(1)
                     Spacer()
@@ -49,7 +49,7 @@ struct ContentView: View {
                 )
             }
             if viewModel.showAlert {
-                Text("Refreshing...")
+                Text(String(localized: "refreshing", comment: "Status text shown while refreshing data"))
                     .onAppear {
                         DispatchQueue.main.async {
                             viewModel.refreshUrl()
