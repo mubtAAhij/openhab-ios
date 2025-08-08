@@ -92,7 +92,7 @@ struct DrawerView: View {
         var dismiss: DismissAction
 
         var body: some View {
-            Section(header: Text("Main")) {
+            Section(header: Text(String(localized: "main_section", comment: "Main navigation section header"))) {
                 HStack {
                     Image("openHABIcon")
                         .resizable()
@@ -115,7 +115,7 @@ struct DrawerView: View {
         var dismiss: DismissAction
 
         var body: some View {
-            Section(header: Text("Tiles")) {
+            Section(header: Text(String(localized: "tiles_section", comment: "Tiles navigation section header"))) {
                 ForEach(uiTiles, id: \.url) { tile in
                     HStack {
                         ImageView(url: tile.imageUrl)
@@ -142,7 +142,7 @@ struct DrawerView: View {
         var dismiss: DismissAction
 
         var body: some View {
-            Section(header: Text("Sitemaps")) {
+            Section(header: Text(String(localized: "sitemaps_section", comment: "Sitemaps navigation section header"))) {
                 ForEach(sitemaps, id: \.name) { sitemap in
                     SitemapRowView(
                         sitemap: sitemap,
@@ -200,7 +200,7 @@ struct DrawerView: View {
         var dismiss: DismissAction
 
         var body: some View {
-            Section(header: Text("System")) {
+            Section(header: Text(String(localized: "system_section", comment: "System navigation section header"))) {
                 HStack {
                     Image(systemSymbol: .gear)
                         .resizable()
@@ -233,7 +233,7 @@ struct DrawerView: View {
     @State private var sitemaps: [OpenHABSitemap] = []
     @State private var uiTiles: [OpenHABUiTile] = []
     @State private var selectedSection: Int?
-    @State private var connectedUrl: String = "Not connected" // Default label text
+    @State private var connectedUrl: String = String(localized: "not_connected", comment: "Connection status when disconnected") // Default label text
     @ObservedObject private var networkTracker = NetworkTracker.shared
 
     var openHABUsername = ""
