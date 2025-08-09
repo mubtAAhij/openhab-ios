@@ -1,2 +1,3 @@
 // Localizable.strings
-"cannot_use_snapshot_on_physical_device" = "Can't use Snapshot on a physical device.";
+"couldnt_detect_set_language" = "Couldn't detect/set language...";
+"couldnt_detect_set_launch_arguments" = "Couldn't detect/set launch_arguments...";
