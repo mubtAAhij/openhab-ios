@@ -46,7 +46,7 @@ enum SnapshotError: Error, CustomDebugStringConvertible {
         case .cannotFindSimulatorHomeDirectory:
             return "Couldn't find simulator home location. Please, check SIMULATOR_HOST_HOME env variable."
         case .cannotRunOnPhysicalDevice:
-            return "Can't use Snapshot on a physical device."
+            return String(localized: "cannot_use_snapshot_on_physical_device", comment: "Error message when trying to use Snapshot on a physical device")
         }
     }
 }
