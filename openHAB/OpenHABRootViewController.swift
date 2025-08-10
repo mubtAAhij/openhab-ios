@@ -45,13 +45,13 @@ class OpenHABRootViewController: UIViewController {
     var cancellables = Set<AnyCancellable>()
 
     private lazy var webViewController: OpenHABWebViewController = {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let storyboard = UIStoryboard(name: String(localized: "main", comment: "Main view title"), bundle: Bundle.main)
         var viewController = storyboard.instantiateViewController(withIdentifier: "OpenHABWebViewController") as! OpenHABWebViewController
         return viewController
     }()
 
     private lazy var sitemapViewController: OpenHABSitemapViewController = {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let storyboard = UIStoryboard(name: String(localized: "main", comment: "Main view title"), bundle: Bundle.main)
         var viewController = storyboard.instantiateViewController(withIdentifier: "OpenHABPageViewController") as! OpenHABSitemapViewController
         return viewController
     }()
@@ -414,7 +414,7 @@ class OpenHABRootViewController: UIViewController {
                         }
                     }
                 } else {
-                    self.displayErrorNotification("Could not find server")
+                    self.displayErrorNotification(String(localized: "could_not_find_server", comment: "Error message when server cannot be found"))
                     if let completionHandler {
                         DispatchQueue.main.async {
                             completionHandler()
@@ -434,7 +434,7 @@ class OpenHABRootViewController: UIViewController {
 
     private func displayErrorNotification(_ message: String, completionHandler: (() -> Void)? = nil) {
         let content = UNMutableNotificationContent()
-        content.title = "Could not send command"
+        content.title = String(localized: "could_not_send_command", comment: "Error message when command cannot be sent")
         content.body = message
         content.sound = UNNotificationSound.default
 
@@ -534,7 +534,7 @@ class OpenHABRootViewController: UIViewController {
                     }
                 }
             } else {
-                self.displayErrorNotification("Could not find active server")
+                self.displayErrorNotification(String(localized: "could_not_find_active_server", comment: "Error message when active server cannot be found"))
                 if let completionHandler {
                     DispatchQueue.main.async {
                         completionHandler()
@@ -633,7 +633,7 @@ class OpenHABRootViewController: UIViewController {
                 client.completeEvaluation(.permitOnce)
             })
 
-            alert.addAction(UIAlertAction(title: "Deny", style: .cancel) { _ in
+            alert.addAction(UIAlertAction(title: String(localized: "deny", comment: "Deny button text"), style: .cancel) { _ in
                 client.completeEvaluation(.deny)
             })
 
