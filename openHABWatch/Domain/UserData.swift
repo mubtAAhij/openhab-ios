@@ -176,7 +176,7 @@ final class UserData: ObservableObject {
             var errorString: String?
 
             if error != nil || data == nil {
-                errorString = error?.localizedDescription ?? "No data received"
+                errorString = error?.localizedDescription ?? NSLocalizedString("no_data_received", comment: "Message when no data is received")
             }
 
             if errorString == nil {
