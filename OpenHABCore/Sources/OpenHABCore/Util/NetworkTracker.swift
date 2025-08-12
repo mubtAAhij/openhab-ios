@@ -16,9 +16,9 @@ import os.log
 
 // TODO: these strings should reference Localizable keys
 public enum NetworkStatus: String {
-    case notConnected = "Not Connected"
+    case notConnected = NSLocalizedString("not_connected", comment: "Status when not connected")
     case connecting = "Connecting"
-    case connected = "Connected"
+    case connected = NSLocalizedString("connected", comment: "Status when connected")
 }
 
 public struct ConnectionConfiguration: Equatable {
