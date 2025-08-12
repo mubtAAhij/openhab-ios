@@ -92,7 +92,7 @@ struct DrawerView: View {
         var dismiss: DismissAction
 
         var body: some View {
-            Section(header: Text("Main")) {
+            Section(header: Text(NSLocalizedString("main", comment: "Main section header"))) {
                 HStack {
                     Image("openHABIcon")
                         .resizable()
@@ -115,7 +115,7 @@ struct DrawerView: View {
         var dismiss: DismissAction
 
         var body: some View {
-            Section(header: Text("Tiles")) {
+            Section(header: Text(NSLocalizedString("tiles", comment: "Tiles section header"))) {
                 ForEach(uiTiles, id: \.url) { tile in
                     HStack {
                         ImageView(url: tile.imageUrl)
@@ -142,7 +142,7 @@ struct DrawerView: View {
         var dismiss: DismissAction
 
         var body: some View {
-            Section(header: Text("Sitemaps")) {
+            Section(header: Text(NSLocalizedString("sitemaps", comment: "Sitemaps section header"))) {
                 ForEach(sitemaps, id: \.name) { sitemap in
                     SitemapRowView(
                         sitemap: sitemap,
@@ -200,7 +200,7 @@ struct DrawerView: View {
         var dismiss: DismissAction
 
         var body: some View {
-            Section(header: Text("System")) {
+            Section(header: Text(NSLocalizedString("system", comment: "System section header"))) {
                 HStack {
                     Image(systemSymbol: .gear)
                         .resizable()
