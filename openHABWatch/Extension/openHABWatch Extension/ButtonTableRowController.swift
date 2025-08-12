@@ -20,7 +20,7 @@ class ButtonTableRowController: NSObject {
 
     @IBAction private func doSwitchButtonPressed(_ value: Bool) {
         guard let item else { return }
-        let command = value ? "ON" : "OFF"
+        let command = value ? String(localized: "on", comment: "Switch on state") : String(localized: "off", comment: "Switch off state")
         switchOpenHabItem(for: item, command: command)
     }
 
@@ -31,7 +31,7 @@ class ButtonTableRowController: NSObject {
     public func setItem(item: Item) {
         self.item = item
         buttonSwitch.setTitle(item.label)
-        buttonSwitch.setOn(item.state == "ON")
+        buttonSwitch.setOn(item.state == String(localized: "on", comment: "Switch on state"))
     }
 
     private func toggleButtonColor(button: WKInterfaceButton) {
