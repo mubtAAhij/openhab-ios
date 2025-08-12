@@ -42,7 +42,7 @@ public enum SortSitemapsOrder: Int, CaseIterable, CustomStringConvertible {
         case .label:
             "Label"
         case .name:
-            "Name"
+            NSLocalizedString("name", comment: "Name field label")
         }
     }
 }
