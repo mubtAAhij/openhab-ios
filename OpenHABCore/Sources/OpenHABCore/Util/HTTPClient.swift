@@ -133,7 +133,7 @@ public class HTTPClient: NSObject {
                         let item = try data.decoded(as: OpenHABItem.CodingData.self, using: decoder)
                         completion(item.openHABItem, nil)
                     } else {
-                        completion(nil, NSError(domain: "HTTPClient", code: -1, userInfo: [NSLocalizedDescriptionKey: "No data for item"]))
+                        completion(nil, NSError(domain: "HTTPClient", code: -1, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("no_data_for_item", comment: "Error message when no data received for item")]))
                     }
                 } catch {
                     os_log("getItemsInternal ERROR: %{PUBLIC}@", log: .networking, type: .info, String(describing: error))
@@ -155,7 +155,7 @@ public class HTTPClient: NSObject {
                         let properties = try data.decoded(as: OpenHABServerProperties.self, using: decoder)
                         completion(properties, nil)
                     } else {
-                        completion(nil, NSError(domain: "HTTPClient", code: -1, userInfo: [NSLocalizedDescriptionKey: "No data for properties"]))
+                        completion(nil, NSError(domain: "HTTPClient", code: -1, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("no_data_for_properties", comment: "Error message when no data received for properties")]))
                     }
                 } catch {
                     os_log("getServerProperties ERROR: %{PUBLIC}@", log: .networking, type: .info, String(describing: error))
@@ -222,7 +222,7 @@ public class HTTPClient: NSObject {
                 completion(data, nil)
             } else {
                 os_log("No data from URL %{public}@", log: .networking, type: .error, url?.absoluteString ?? "")
-                completion(nil, URLError(.unknown, userInfo: [NSLocalizedDescriptionKey: "No valid data received from server."]))
+                completion(nil, URLError(.unknown, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("no_valid_data_from_server", comment: "Error message when no valid data received from server")]))
             }
         }
     }
@@ -231,7 +231,7 @@ public class HTTPClient: NSObject {
                           timeout: TimeInterval = 60.0, body: String? = nil, download: Bool = false, completion: @escaping (Any?, URLResponse?, Error?) -> Void) -> URLSessionTask? {
         guard var url = baseURL ?? self.baseURL else {
             os_log("doRequest ERROR: Base URL is nil", log: .networking, type: .info)
-            completion(nil, nil, NSError(domain: "HTTPClient", code: -1, userInfo: [NSLocalizedDescriptionKey: "Base URL is nil"]))
+            completion(nil, nil, NSError(domain: "HTTPClient", code: -1, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("base_url_is_nil", comment: "Error message when base URL is nil")]))
             return nil
         }
 
@@ -258,7 +258,7 @@ public class HTTPClient: NSObject {
             } else if let response = response as? HTTPURLResponse {
                 if (400 ... 599).contains(response.statusCode) {
                     os_log("HTTP error from URL %{public}@ : %{public}d", log: .networking, type: .error, url.absoluteString, response.statusCode)
-                    completion(nil, response, NSError(domain: "HTTPClient", code: response.statusCode, userInfo: [NSLocalizedDescriptionKey: "HTTP error \(response.statusCode)"]))
+                    completion(nil, response, NSError(domain: "HTTPClient", code: response.statusCode, userInfo: [NSLocalizedDescriptionKey: String(format: NSLocalizedString("http_error", comment: "HTTP error message with status code"), response.statusCode)]))
                 } else {
                     os_log("Response from URL %{public}@ : %{public}d", log: .networking, type: .info, url.absoluteString, response.statusCode)
                     completion(result, response, nil)
