@@ -166,7 +166,7 @@ class NotificationService: UNNotificationServiceExtension {
 
     func downloadAndAttachItemImage(itemURI: String, completion: @escaping (UNNotificationAttachment?) -> Void) {
         guard let itemURI = URL(string: itemURI), let scheme = itemURI.scheme else {
-            os_log(NSLocalizedString("scheme_not_found", comment: "Error message when scheme cannot be found"), log: .default, type: .info)
+            os_log(String(localized: "notification_service_scheme_not_found", comment: "Error message when URI scheme cannot be found"), log: .default, type: .info)
             completion(nil)
             return
         }
@@ -187,7 +187,7 @@ class NotificationService: UNNotificationServiceExtension {
             if let openHABUrl = activeConnection?.configuration.url, let url = URL(string: openHABUrl) {
                 client.getItem(baseURL: url, itemName: itemName) { item, error in
                     guard let item else {
-                        os_log(NSLocalizedString("item_not_found", comment: "Error message when item cannot be found"), log: .default, type: .info, itemName)
+                        os_log(String(localized: "notification_service_item_not_found", comment: "Error message when openHAB item cannot be found"), log: .default, type: .info, itemName)
                         completion(nil)
                         return
                     }
