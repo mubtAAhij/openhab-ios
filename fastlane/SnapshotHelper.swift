@@ -44,9 +44,9 @@ enum SnapshotError: Error, CustomDebugStringConvertible {
     var debugDescription: String {
         switch self {
         case .cannotFindSimulatorHomeDirectory:
-            return NSLocalizedString("simulator_home_not_found", comment: "Error message when simulator home location cannot be found")
+            return "Couldn't find simulator home location. Please, check SIMULATOR_HOST_HOME env variable."
         case .cannotRunOnPhysicalDevice:
-            return NSLocalizedString("snapshot_physical_device_error", comment: "Error message when trying to use Snapshot on a physical device")
+            return "Can't use Snapshot on a physical device."
         }
     }
 }
@@ -92,7 +92,7 @@ open class Snapshot: NSObject {
             deviceLanguage = try String(contentsOf: path, encoding: .utf8).trimmingCharacters(in: trimCharacterSet)
             app.launchArguments += ["-AppleLanguages", "(\(deviceLanguage))"]
         } catch {
-            NSLog(NSLocalizedString("language_detection_error", comment: "Error message when language detection or setting fails"))
+            NSLog("Couldn't detect/set language...")
         }
     }
 
@@ -108,7 +108,7 @@ open class Snapshot: NSObject {
             let trimCharacterSet = CharacterSet.whitespacesAndNewlines
             currentLocale = try String(contentsOf: path, encoding: .utf8).trimmingCharacters(in: trimCharacterSet)
         } catch {
-            NSLog(NSLocalizedString("locale_detection_error", comment: "Error message when locale detection or setting fails"))
+            NSLog("Couldn't detect/set locale...")
         }
 
         if currentLocale.isEmpty && !deviceLanguage.isEmpty {
@@ -138,7 +138,7 @@ open class Snapshot: NSObject {
             }
             app.launchArguments += results
         } catch {
-            NSLog(NSLocalizedString("launch_arguments_error", comment: "Error message when launch arguments detection or setting fails"))
+            NSLog("Couldn't detect/set launch_arguments...")
         }
     }
 
