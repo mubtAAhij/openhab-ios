@@ -20,7 +20,7 @@ class ButtonTableRowController: NSObject {
 
     @IBAction private func doSwitchButtonPressed(_ value: Bool) {
         guard let item else { return }
-        let command = value ? "ON" : "OFF"
+        let command = value ? String(localized: "on", comment: "Switch state ON") : String(localized: "off", comment: "Switch state OFF")
         switchOpenHabItem(for: item, command: command)
     }
 
@@ -31,7 +31,7 @@ class ButtonTableRowController: NSObject {
     public func setItem(item: Item) {
         self.item = item
         buttonSwitch.setTitle(item.label)
-        buttonSwitch.setOn(item.state == "ON")
+        buttonSwitch.setOn(item.state == String(localized: "on", comment: "Switch state ON"))
     }
 
     private func toggleButtonColor(button: WKInterfaceButton) {
@@ -46,7 +46,7 @@ class ButtonTableRowController: NSObject {
         OpenHabService.singleton.switchOpenHabItem(for: item, command: command) { (data, response, error) in
             self.interfaceController!.hideActivityImage()
             guard let data, error == nil else { // check for fundamental networking error
-                self.interfaceController!.displayAlert(message: "error=\(String(describing: error))")
+                self.interfaceController!.displayAlert(message: String(localized: "error_message", comment: "Error message with error details interpolation"))
                 return
             }
 
