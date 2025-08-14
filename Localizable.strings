@@ -1,3 +1,3 @@
 // Localizable.strings
-"notification_service_scheme_not_found" = "Could not find scheme %{PUBLIC}@";
-"notification_service_item_not_found" = "Could not find item %{PUBLIC}@";
+"notification_error_no_scheme" = "Could not find scheme %{PUBLIC}@";
+"notification_error_item_not_found" = "Could not find item %{PUBLIC}@";
