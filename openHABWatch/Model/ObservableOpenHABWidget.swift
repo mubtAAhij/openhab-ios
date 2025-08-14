@@ -141,13 +141,13 @@ class ObservableOpenHABWidget: NSObject, MKAnnotation, Identifiable, ObservableO
             if !mappings.isEmpty {
                 .segmented(Int(mappingIndex(byCommand: item?.state) ?? -1))
             } else if item?.isOfTypeOrGroupType(.switchItem) ?? false {
-                .switcher(item?.state == "ON" ? true : false)
+                .switcher(item?.state == String(localized: "on", comment: "Switch state ON") ? true : false)
             } else if item?.isOfTypeOrGroupType(.rollershutter) ?? false {
                 .rollershutter
             } else if !mappingsOrItemOptions.isEmpty {
                 .segmented(Int(mappingIndex(byCommand: item?.state) ?? -1))
             } else {
-                .switcher(item?.state == "ON" ? true : false)
+                .switcher(item?.state == String(localized: "on", comment: "Switch state ON") ? true : false)
             }
         case "Setpoint":
             .setpoint
