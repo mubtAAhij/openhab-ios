@@ -842,12 +842,12 @@ extension OpenHABSitemapViewController: UITableViewDelegate, UITableViewDataSour
 
             // TODO: proper texts instead of hardcoded values
             let alert = UIAlertController(
-                title: "Enter new value",
-                message: "Current value for \(widget.label) is \(widget.state)",
+                title: String(localized: "enter_new_value", comment: "Placeholder text prompting user to enter a new value"),
+                message: String(localized: "current_value_for_widget", comment: "Shows the current value for a widget with label and state interpolation"),
                 preferredStyle: .alert
             )
             alert.addTextField(configurationHandler: textFieldAdder)
-            let sendAction = UIAlertAction(title: "Set value", style: .destructive, handler: { [weak self] _ in
+            let sendAction = UIAlertAction(title: String(localized: "set_value", comment: "Button text to set/confirm a value"), style: .destructive, handler: { [weak self] _ in
                 self?.sendCommand(widget.item, commandToSend: textExtractor(alert))
             })
             alert.addAction(sendAction)
