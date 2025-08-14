@@ -18,7 +18,7 @@ class SetSwitchStateIntentHandler: NSObject, OpenHABSetSwitchStateIntentHandling
     static let ON = NSLocalizedString("on", comment: "").capitalized // User language
     static let OFF = NSLocalizedString("off", comment: "").capitalized // User language
     static let ACTION_NAMES = [ON, OFF]
-    static let ACTION_MAP = [ON: "ON", OFF: "OFF"] // these are the sent items - do not translate this text
+    static let ACTION_MAP = [ON: NSLocalizedString("on", comment: "Switch ON state"), OFF: NSLocalizedString("off", comment: "Switch OFF state")] // these are the sent items - do not translate this text
 
     func provideActionOptionsCollection(for intent: OpenHABSetSwitchStateIntent, with completion: @escaping (INObjectCollection<NSString>?, Error?) -> Void) {
         let actions = INObjectCollection<NSString>(items: SetSwitchStateIntentHandler.ACTION_NAMES as [NSString])
