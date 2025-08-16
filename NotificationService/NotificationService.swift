@@ -203,7 +203,7 @@ class NotificationService: UNNotificationServiceExtension {
                                 let tempFileURL = tempDirectory.appendingPathComponent(UUID().uuidString)
                                 do {
                                     try imageData.write(to: tempFileURL)
-                                    os_log("Image saved to temporary file: %{PUBLIC}@", log: .default, type: .info, tempFileURL.absoluteString)
+                                    os_log(NSLocalizedString("image_saved_temp_file", comment: "Debug message when image is saved to temporary file"), log: .default, type: .info, tempFileURL.absoluteString)
                                     self.attachFile(localURL: tempFileURL, mimeType: mimeType, completion: completion)
                                     return
                                 } catch {
