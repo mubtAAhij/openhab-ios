@@ -82,7 +82,7 @@ public extension String {
     }
 
     func parseAsBool() -> Bool {
-        if self == "ON" { return true }
+        if self == NSLocalizedString("on", comment: "Switch state ON") { return true }
         if let brightness = parseAsBrightness() { return brightness != 0 }
         if let decimalValue = Int(self) {
             return decimalValue > 0
@@ -93,8 +93,8 @@ public extension String {
 
     func parseAsNumber(format: String? = nil) -> NumberState {
         switch self {
-        case "ON": return NumberState(value: 100.0)
-        case "OFF": return NumberState(value: 0.0)
+        case NSLocalizedString("on", comment: "Switch state ON"): return NumberState(value: 100.0)
+        case NSLocalizedString("off", comment: "Switch state OFF"): return NumberState(value: 0.0)
         default:
             let components = split(separator: " ").map { String($0) }
             let number = String(components[safe: 0] ?? "")
