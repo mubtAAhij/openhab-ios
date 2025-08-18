@@ -53,14 +53,14 @@ class ColorPickerCell: GenericUITableViewCell {
 
     @objc
     func upButtonPressed() {
-        os_log("ON button pressed", log: .viewCycle, type: .info)
-        widget.sendCommand("ON")
+        os_log("String(localized: "color_picker_on_button_pressed", comment: "Log message when ON button is pressed in color picker")", log: .viewCycle, type: .info)
+        widget.sendCommand("String(localized: "on_command", comment: "ON command for switching on")")
     }
 
     @objc
     func downButtonPressed() {
-        os_log("OFF button pressed", log: .viewCycle, type: .info)
-        widget.sendCommand("OFF")
+        os_log("String(localized: "color_picker_off_button_pressed", comment: "Log message when OFF button is pressed in color picker")", log: .viewCycle, type: .info)
+        widget.sendCommand("String(localized: "off_command", comment: "OFF command for switching off")")
     }
 }
 
