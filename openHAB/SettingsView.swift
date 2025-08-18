@@ -61,7 +61,7 @@ struct SettingsView: View {
         Form {
             Section(header: Text(LocalizedStringKey("openhab_connection"))) {
                 Toggle(isOn: $settingsDemomode) {
-                    Text(String(localized: "demo_mode", comment: "Demo mode setting label"))
+                    Text("Demo Mode")
                 }
 
                 if !settingsDemomode {
@@ -79,7 +79,7 @@ struct SettingsView: View {
                     } label: {
                         Text("Local URL")
                         if settingsLocalUrl.isEmpty {
-                            Text(String(localized: "enter_local_server_url", comment: "Placeholder for local server URL"))
+                            Text("Enter URL of local server")
                         }
                     }
 
@@ -97,13 +97,13 @@ struct SettingsView: View {
                     } label: {
                         Text("Remote URL")
                         if settingsRemoteUrl.isEmpty {
-                            Text(String(localized: "enter_remote_server_url", comment: "Placeholder for remote server URL"))
+                            Text("Enter URL of remote server")
                         }
                     }
 
                     LabeledContent {
                         TextField(
-                            String(localized: "username_placeholder", comment: "Placeholder for username field"),
+                            "Foo",
                             text: $settingsUsername
                         )
                         .fixedSize()
@@ -113,13 +113,13 @@ struct SettingsView: View {
                     } label: {
                         Text("Username")
                         if settingsUsername.isEmpty {
-                            Text(String(localized: "enter_username_hint", comment: "Hint for username field"))
+                            Text("Enter username on server, if required")
                         }
                     }
 
                     LabeledContent {
                         SecureField(
-                            String(localized: "password_placeholder", comment: "Placeholder for password field"),
+                            "1234",
                             text: $settingsPassword
                         )
                         .fixedSize()
@@ -130,7 +130,7 @@ struct SettingsView: View {
                     } label: {
                         Text("Password")
                         if settingsPassword.isEmpty {
-                            Text("String(localized: "enter_password_on_server", comment: "Placeholder text for password field")")
+                            Text("Enter password on server")
                         }
                     }
 
@@ -142,7 +142,7 @@ struct SettingsView: View {
 
             Section(header: Text(LocalizedStringKey("application_settings"))) {
                 Toggle(isOn: $settingsIgnoreSSL) {
-                    Text("String(localized: "ignore_ssl_certificates", comment: "Settings toggle for ignoring SSL certificates")")
+                    Text("Ignore SSL certificates")
                 }
 
                 Toggle(isOn: $settingsIdleOff) {
@@ -197,7 +197,7 @@ struct SettingsView: View {
 
             Section(header: Text(LocalizedStringKey("mainui_settings"))) {
                 Toggle(isOn: $settingsAlwaysAllowWebRTC) {
-                    Text("String(localized: "always_allow_webrtc", comment: "Settings toggle for always allowing WebRTC")")
+                    Text("Always allow WebRTC")
                 }
 
                 LabeledContent {
@@ -229,7 +229,7 @@ struct SettingsView: View {
                     }
 
                 } label: {
-                    Text("String(localized: "default_path", comment: "Label for default path setting")")
+                    Text("Default Path")
                 }
 
                 Button {
@@ -283,7 +283,7 @@ struct SettingsView: View {
                         Text(sitemap.label)
                     }
                 } label: {
-                    Text("String(localized: "sitemap_for_apple_watch", comment: "Label for Apple Watch sitemap selection")")
+                    Text("Sitemap For Apple Watch")
                 }
             }
 
@@ -310,7 +310,7 @@ struct SettingsView: View {
         .navigationBarTitle("Settings")
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
-                Button("String(localized: "save", comment: "Save button text")") {
+                Button("Save") {
                     saveSettings()
                     appData?.sitemapViewController?.pageUrl = ""
                     NotificationCenter.default.post(name: NSNotification.Name("org.openhab.preferences.saved"), object: nil)
@@ -325,7 +325,7 @@ struct SettingsView: View {
         }
         .onAppear {
             loadSettings()
-            logger.debug("Loading Settings")
+            logger.debug("String(localized: "loading_settings", comment: "Status message shown while settings are being loaded")")
         }
     }
 
