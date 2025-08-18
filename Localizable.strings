@@ -1,3 +1,2 @@
 // Localizable.strings
-"color_picker_on_button_pressed" = "ON button pressed";
-"color_picker_off_button_pressed" = "OFF button pressed";
+"color_changed_hsb_format" = "Color changed to HSB(%g, %g, %g).";
