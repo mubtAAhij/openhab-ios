@@ -16,9 +16,9 @@ import os.log
 
 // TODO: these strings should reference Localizable keys
 public enum NetworkStatus: String {
-    case notConnected = "String(localized: "not_connected", comment: "Network not connected status")"
+    case notConnected = "Not Connected"
     case connecting = "Connecting"
-    case connected = "String(localized: "connected", comment: "Network connected status")"
+    case connected = "Connected"
 }
 
 public struct ConnectionConfiguration: Equatable {
