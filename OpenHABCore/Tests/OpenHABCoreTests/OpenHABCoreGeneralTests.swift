@@ -21,7 +21,7 @@ final class OpenHABCoreGeneralTests: XCTestCase {
             rootUrl: "http://192.169.2.1",
             version: 2,
             icon: "switch",
-            state: "OFF",
+            state: String(localized: "off", comment: "Switch off state"),
             iconType: .svg,
             iconColor: ""
         ).url
