@@ -71,7 +71,7 @@ class OpenHABWebViewController: OpenHABViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(hideNavBar, animated: animated)
         navigationController?.navigationBar.prefersLargeTitles = false
-        parent?.navigationItem.title = "Main View"
+        parent?.navigationItem.title = String(localized: "main_view", comment: "Main view navigation title")
         NetworkTracker.shared.$activeConnection
             .receive(on: DispatchQueue.main)
             .sink { activeConnection in
