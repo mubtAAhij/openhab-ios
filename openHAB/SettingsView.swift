@@ -130,7 +130,7 @@ struct SettingsView: View {
                     } label: {
                         Text("Password")
                         if settingsPassword.isEmpty {
-                            Text("Enter password on server")
+                            Text("String(localized: "enter_password_on_server", comment: "Placeholder text for password field in settings")")
                         }
                     }
 
@@ -142,7 +142,7 @@ struct SettingsView: View {
 
             Section(header: Text(LocalizedStringKey("application_settings"))) {
                 Toggle(isOn: $settingsIgnoreSSL) {
-                    Text("Ignore SSL certificates")
+                    Text("String(localized: "ignore_ssl_certificates", comment: "Setting to ignore SSL certificate validation")")
                 }
 
                 Toggle(isOn: $settingsIdleOff) {
@@ -197,7 +197,7 @@ struct SettingsView: View {
 
             Section(header: Text(LocalizedStringKey("mainui_settings"))) {
                 Toggle(isOn: $settingsAlwaysAllowWebRTC) {
-                    Text("Always allow WebRTC")
+                    Text("String(localized: "always_allow_webrtc", comment: "Setting to always allow WebRTC connections")")
                 }
 
                 LabeledContent {
@@ -229,7 +229,7 @@ struct SettingsView: View {
                     }
 
                 } label: {
-                    Text("Default Path")
+                    Text("String(localized: "default_path", comment: "Label for default path setting")")
                 }
 
                 Button {
@@ -283,7 +283,7 @@ struct SettingsView: View {
                         Text(sitemap.label)
                     }
                 } label: {
-                    Text("Sitemap For Apple Watch")
+                    Text("String(localized: "sitemap_for_apple_watch", comment: "Setting for selecting sitemap for Apple Watch")")
                 }
             }
 
@@ -310,7 +310,7 @@ struct SettingsView: View {
         .navigationBarTitle("Settings")
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
-                Button("Save") {
+                Button("String(localized: "save", comment: "Save button text")") {
                     saveSettings()
                     appData?.sitemapViewController?.pageUrl = ""
                     NotificationCenter.default.post(name: NSNotification.Name("org.openhab.preferences.saved"), object: nil)
@@ -325,7 +325,7 @@ struct SettingsView: View {
         }
         .onAppear {
             loadSettings()
-            logger.debug("Loading Settings")
+            logger.debug("String(localized: "loading_settings", comment: "Loading message for settings")")
         }
     }
 
