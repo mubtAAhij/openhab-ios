@@ -1,0 +1,10 @@
+// Localizable.strings
+"enter_password_on_server" = "Enter password on server";
+"ignore_ssl_certificates" = "Ignore SSL certificates";
+"always_allow_webrtc" = "Always allow WebRTC";
+"default_path" = "Default Path";
+"sitemap_for_apple_watch" = "Sitemap For Apple Watch";
+"save" = "Save";
+"loading_settings" = "Loading Settings";
+"on" = "ON";
+"off" = "OFF";
