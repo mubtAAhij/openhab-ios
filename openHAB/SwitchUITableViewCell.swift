@@ -48,10 +48,10 @@ class SwitchUITableViewCell: GenericUITableViewCell {
     func switchChange() {
         if (widgetSwitch?.isOn)! {
             os_log("Switch to ON", log: .viewCycle, type: .info)
-            widget.sendCommand("ON")
+            widget.sendCommand("String(localized: "on", comment: "Switch state: ON")")
         } else {
             os_log("Switch to OFF", log: .viewCycle, type: .info)
-            widget.sendCommand("OFF")
+            widget.sendCommand("String(localized: "off", comment: "Switch state: OFF")")
         }
     }
 }
