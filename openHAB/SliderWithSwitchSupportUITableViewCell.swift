@@ -124,10 +124,10 @@ class SliderWithSwitchSupportUITableViewCell: GenericUITableViewCell {
     func switchChange() {
         if (widgetSwitch?.isOn)! {
             os_log("Switch to ON", log: .viewCycle, type: .info)
-            widget.sendCommand("ON")
+            widget.sendCommand("NSLocalizedString("on", comment: "Switch on state")")
         } else {
             os_log("Switch to OFF", log: .viewCycle, type: .info)
-            widget.sendCommand("OFF")
+            widget.sendCommand("NSLocalizedString("off", comment: "Switch off state")")
         }
     }
 }
