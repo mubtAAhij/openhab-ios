@@ -61,7 +61,7 @@ struct SettingsView: View {
         Form {
             Section(header: Text(LocalizedStringKey("openhab_connection"))) {
                 Toggle(isOn: $settingsDemomode) {
-                    Text("Demo Mode")
+                    Text("String(localized: "demo_mode", comment: "Demo mode setting label")")
                 }
 
                 if !settingsDemomode {
@@ -79,7 +79,7 @@ struct SettingsView: View {
                     } label: {
                         Text("Local URL")
                         if settingsLocalUrl.isEmpty {
-                            Text("Enter URL of local server")
+                            Text("String(localized: "enter_local_server_url", comment: "Prompt to enter local server URL")")
                         }
                     }
 
