@@ -35,6 +35,6 @@ class PrefsInterfaceController: WKInterfaceController {
         let versionNumber: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
         let buildNumber: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
 
-        versionLabel.setText("V\(versionNumber).\(buildNumber)")
+        versionLabel.setText("String(localized: "version_format", comment: "Version number format string").replacingOccurrences(of: "{version}", with: versionNumber).replacingOccurrences(of: "{build}", with: buildNumber)")
     }
 }
