@@ -54,12 +54,12 @@ struct ColorPickerRow: View {
 
     func upButtonPressed() {
         os_log("ON button pressed", log: .command, type: .info)
-        widget.sendCommand("ON")
+        widget.sendCommand("String(localized: "on", comment: "ON state for switches")")
     }
 
     func downButtonPressed() {
         os_log("OFF button pressed", log: .command, type: .info)
-        widget.sendCommand("OFF")
+        widget.sendCommand("String(localized: "off", comment: "OFF state for switches")")
     }
 }
 
