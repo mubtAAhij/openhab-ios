@@ -42,7 +42,7 @@ public enum SortSitemapsOrder: Int, CaseIterable, CustomStringConvertible {
         case .label:
             "Label"
         case .name:
-            "Name"
+            "String(localized: "name", comment: "Default name for endpoint")"
         }
     }
 }
