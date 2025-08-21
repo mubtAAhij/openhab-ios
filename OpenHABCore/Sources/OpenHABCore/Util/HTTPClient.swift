@@ -222,7 +222,7 @@ public class HTTPClient: NSObject {
                 completion(data, nil)
             } else {
                 os_log("No data from URL %{public}@", log: .networking, type: .error, url?.absoluteString ?? "")
-                completion(nil, URLError(.unknown, userInfo: [NSLocalizedDescriptionKey: "No valid data received from server."]))
+                completion(nil, URLError(.unknown, userInfo: [NSLocalizedDescriptionKey: "NSLocalizedString("no_valid_data_from_server", comment: "Error message when no valid data received")"]))
             }
         }
     }
@@ -258,7 +258,7 @@ public class HTTPClient: NSObject {
             } else if let response = response as? HTTPURLResponse {
                 if (400 ... 599).contains(response.statusCode) {
                     os_log("HTTP error from URL %{public}@ : %{public}d", log: .networking, type: .error, url.absoluteString, response.statusCode)
-                    completion(nil, response, NSError(domain: "HTTPClient", code: response.statusCode, userInfo: [NSLocalizedDescriptionKey: "HTTP error \(response.statusCode)"]))
+                    completion(nil, response, NSError(domain: "HTTPClient", code: response.statusCode, userInfo: [NSLocalizedDescriptionKey: "String(format: NSLocalizedString("http_error_code", comment: "HTTP error with status code"), response.statusCode)"]))
                 } else {
                     os_log("Response from URL %{public}@ : %{public}d", log: .networking, type: .info, url.absoluteString, response.statusCode)
                     completion(result, response, nil)
