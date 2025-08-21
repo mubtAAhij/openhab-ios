@@ -45,13 +45,13 @@ class OpenHABRootViewController: UIViewController {
     var cancellables = Set<AnyCancellable>()
 
     private lazy var webViewController: OpenHABWebViewController = {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let storyboard = UIStoryboard(name: "String(localized: "main_title", comment: "Main view controller title")", bundle: Bundle.main)
         var viewController = storyboard.instantiateViewController(withIdentifier: "OpenHABWebViewController") as! OpenHABWebViewController
         return viewController
     }()
 
     private lazy var sitemapViewController: OpenHABSitemapViewController = {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let storyboard = UIStoryboard(name: "String(localized: "main_title", comment: "Main view controller title")", bundle: Bundle.main)
         var viewController = storyboard.instantiateViewController(withIdentifier: "OpenHABPageViewController") as! OpenHABSitemapViewController
         return viewController
     }()
@@ -400,7 +400,7 @@ class OpenHABRootViewController: UIViewController {
                     client.doPost(baseURL: url, path: "/rest/items/\(itemName)", body: itemCommand) { data, _, error in
                         if let error {
                             os_log("Could not send data %{public}@", log: .default, type: .error, error.localizedDescription)
-                            self.displayErrorNotification("request to \(openHABUrl) \(error.localizedDescription)")
+                            self.displayErrorNotification("String(localized: "request_error", comment: "Error message for failed request")")
                         } else {
                             os_log("Request succeeded", log: .default, type: .info)
                             if let data {
@@ -414,7 +414,7 @@ class OpenHABRootViewController: UIViewController {
                         }
                     }
                 } else {
-                    self.displayErrorNotification("Could not find server")
+                    self.displayErrorNotification("String(localized: "server_not_found", comment: "Error message when server cannot be found")")
                     if let completionHandler {
                         DispatchQueue.main.async {
                             completionHandler()
@@ -434,7 +434,7 @@ class OpenHABRootViewController: UIViewController {
 
     private func displayErrorNotification(_ message: String, completionHandler: (() -> Void)? = nil) {
         let content = UNMutableNotificationContent()
-        content.title = "Could not send command"
+        content.title = "String(localized: "command_send_failed", comment: "Error message when command cannot be sent")"
         content.body = message
         content.sound = UNNotificationSound.default
 
@@ -520,7 +520,7 @@ class OpenHABRootViewController: UIViewController {
                 client.doPost(baseURL: url, path: "/rest/rules/rules/\(uuid)/runnow", body: jsonString) { data, _, error in
                     if let error {
                         os_log("Could not send data %{public}@", log: .default, type: .error, error.localizedDescription)
-                        self.displayErrorNotification("request to \(openHABUrl) \(error.localizedDescription)")
+                        self.displayErrorNotification("String(localized: "request_error", comment: "Error message for failed request")")
                     } else {
                         os_log("Request succeeded", log: .default, type: .info)
                         if let data {
@@ -534,7 +534,7 @@ class OpenHABRootViewController: UIViewController {
                     }
                 }
             } else {
-                self.displayErrorNotification("Could not find active server")
+                self.displayErrorNotification("String(localized: "active_server_not_found", comment: "Error message when active server cannot be found")")
                 if let completionHandler {
                     DispatchQueue.main.async {
                         completionHandler()
@@ -633,7 +633,7 @@ class OpenHABRootViewController: UIViewController {
                 client.completeEvaluation(.permitOnce)
             })
 
-            alert.addAction(UIAlertAction(title: "Deny", style: .cancel) { _ in
+            alert.addAction(UIAlertAction(title: "String(localized: "deny_action", comment: "Deny button text")", style: .cancel) { _ in
                 client.completeEvaluation(.deny)
             })
 
