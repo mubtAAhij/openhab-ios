@@ -487,7 +487,7 @@ final class JSONParserTests: XCTestCase {
                 log: log,
                 name: "Decode JSON",
                 signpostID: signpostID,
-                "End"
+                "String(localized: "end", comment: "End label for test")"
             )
 
             let widgets: [OpenHABWidget.CodingData] = try XCTUnwrap(codingData.page.widgets)
@@ -532,8 +532,8 @@ final class JSONParserTests: XCTestCase {
                 return widgetCodingData.openHABWidget
             }()
 
-            XCTAssertEqual(widget.mappingsOrItemOptions[0].command, "OFF", "Checking assignment of stateDescription")
-            XCTAssertEqual(widget.mappingIndex(byCommand: "ON"), 1, "Checking finding of command")
+            XCTAssertEqual(widget.mappingsOrItemOptions[0].command, "String(localized: "off", comment: "OFF state for test")", "Checking assignment of stateDescription")
+            XCTAssertEqual(widget.mappingIndex(byCommand: "String(localized: "on", comment: "ON state for test")"), 1, "Checking finding of command")
 
         } catch {
             XCTFail("Whoops, an error occured: \(error)")
