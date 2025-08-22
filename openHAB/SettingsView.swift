@@ -61,7 +61,7 @@ struct SettingsView: View {
         Form {
             Section(header: Text(LocalizedStringKey("openhab_connection"))) {
                 Toggle(isOn: $settingsDemomode) {
-                    Text("Demo Mode")
+                    Text(String(localized: "demo_mode", comment: "Demo mode setting"))
                 }
 
                 if !settingsDemomode {
@@ -79,7 +79,7 @@ struct SettingsView: View {
                     } label: {
                         Text("Local URL")
                         if settingsLocalUrl.isEmpty {
-                            Text("Enter URL of local server")
+                            Text(String(localized: "enter_local_server_url", comment: "Placeholder for local server URL"))
                         }
                     }
 
@@ -97,13 +97,13 @@ struct SettingsView: View {
                     } label: {
                         Text("Remote URL")
                         if settingsRemoteUrl.isEmpty {
-                            Text("Enter URL of remote server")
+                            Text("NSLocalizedString("enter_remote_url", comment: "Placeholder text for remote server URL field")")
                         }
                     }
 
                     LabeledContent {
                         TextField(
-                            "Foo",
+                            "NSLocalizedString("username_placeholder", comment: "Placeholder text for username field")",
                             text: $settingsUsername
                         )
                         .fixedSize()
@@ -113,13 +113,13 @@ struct SettingsView: View {
                     } label: {
                         Text("Username")
                         if settingsUsername.isEmpty {
-                            Text("Enter username on server, if required")
+                            Text("NSLocalizedString("enter_username_hint", comment: "Help text for username field")")
                         }
                     }
 
                     LabeledContent {
                         SecureField(
-                            "1234",
+                            "NSLocalizedString("password_placeholder", comment: "Placeholder text for password field")",
                             text: $settingsPassword
                         )
                         .fixedSize()
@@ -130,7 +130,7 @@ struct SettingsView: View {
                     } label: {
                         Text("Password")
                         if settingsPassword.isEmpty {
-                            Text("Enter password on server")
+                            Text("NSLocalizedString("enter_password_hint", comment: "Help text for password field")")
                         }
                     }
 
@@ -142,7 +142,7 @@ struct SettingsView: View {
 
             Section(header: Text(LocalizedStringKey("application_settings"))) {
                 Toggle(isOn: $settingsIgnoreSSL) {
-                    Text("Ignore SSL certificates")
+                    Text("NSLocalizedString("ignore_ssl_certificates", comment: "Settings option to ignore SSL certificate validation")")
                 }
 
                 Toggle(isOn: $settingsIdleOff) {
@@ -197,7 +197,7 @@ struct SettingsView: View {
 
             Section(header: Text(LocalizedStringKey("mainui_settings"))) {
                 Toggle(isOn: $settingsAlwaysAllowWebRTC) {
-                    Text("Always allow WebRTC")
+                    Text("NSLocalizedString("always_allow_webrtc", comment: "Settings option to always allow WebRTC connections")")
                 }
 
                 LabeledContent {
@@ -229,7 +229,7 @@ struct SettingsView: View {
                     }
 
                 } label: {
-                    Text("Default Path")
+                    Text("NSLocalizedString("default_path", comment: "Label for default path setting")")
                 }
 
                 Button {
@@ -283,7 +283,7 @@ struct SettingsView: View {
                         Text(sitemap.label)
                     }
                 } label: {
-                    Text("Sitemap For Apple Watch")
+                    Text("NSLocalizedString("sitemap_for_watch", comment: "Label for Apple Watch sitemap selection")")
                 }
             }
 
@@ -310,7 +310,7 @@ struct SettingsView: View {
         .navigationBarTitle("Settings")
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
-                Button("Save") {
+                Button("NSLocalizedString("save", comment: "Save button text")") {
                     saveSettings()
                     appData?.sitemapViewController?.pageUrl = ""
                     NotificationCenter.default.post(name: NSNotification.Name("org.openhab.preferences.saved"), object: nil)
@@ -325,7 +325,7 @@ struct SettingsView: View {
         }
         .onAppear {
             loadSettings()
-            logger.debug("Loading Settings")
+            logger.debug("NSLocalizedString("loading_settings", comment: "Text shown while settings are loading")")
         }
     }
 
