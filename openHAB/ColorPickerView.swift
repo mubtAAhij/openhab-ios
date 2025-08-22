@@ -29,7 +29,7 @@ struct ColorPickerView: View {
     var body: some View {
         VStack {
             // SwiftUI Color Picker
-            ColorPicker("Pick a Color", selection: $selectedColor)
+            ColorPicker("String(localized: "pick_color", comment: "Color picker title")", selection: $selectedColor)
                 .onChange(of: selectedColor) { newColor in
                     throttler.throttle {
                         updateHSB(from: newColor)
@@ -39,9 +39,9 @@ struct ColorPickerView: View {
                 .padding()
 
             // Displaying HSB values
-            Text("Hue: \(hue, specifier: "%.2f")")
-            Text("Saturation: \(saturation, specifier: "%.2f")")
-            Text("Brightness: \(brightness, specifier: "%.2f")")
+            Text("String(localized: "hue_value", comment: "Hue label with value")")
+            Text("String(localized: "saturation_value", comment: "Saturation label with value")")
+            Text("String(localized: "brightness_value", comment: "Brightness label with value")")
         }
         .onAppear {
             // Set initial color from widget if available
@@ -67,7 +67,7 @@ struct ColorPickerView: View {
     // Send the color update to the widget
     func sendColorUpdate() {
         let command = "\(hue),\(saturation),\(brightness)"
-        logger.debug("Sending command: \(command)")
+        logger.debug("String(localized: "sending_command", comment: "Debug log for sending command")")
         widget?.sendCommand(command)
     }
 }
