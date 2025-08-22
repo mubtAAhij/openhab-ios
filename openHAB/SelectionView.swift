@@ -41,7 +41,7 @@ struct SelectionView: View {
             .accessibilityElement(children: .combine)
             .accessibilityAddTraits(.isButton)
         }
-        .navigationTitle(labelText ?? "Select Mapping") // Navigation title
+        .navigationTitle(labelText ?? String(localized: "select_mapping", comment: "Selection mapping title")) // Navigation title
     }
 }
 
