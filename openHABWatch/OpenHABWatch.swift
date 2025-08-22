@@ -30,11 +30,11 @@ struct OpenHABWatch: App {
                     }
                 PreferencesSwiftUIView()
                     .tabItem {
-                        Label("Preferences", systemSymbol: .circleFill)
+                        Label("NSLocalizedString("preferences", comment: "Preferences menu item")", systemSymbol: .circleFill)
                     }
                 LogsViewer()
                     .tabItem {
-                        Label("Debug", systemSymbol: .circleFill)
+                        Label("NSLocalizedString("debug", comment: "Debug menu item")", systemSymbol: .circleFill)
                     }
             }
             .tabViewStyle(.page)
