@@ -78,17 +78,17 @@ class OpenHABUITests: XCTestCase {
 
         let widgetTable = app.tables["OpenHABSitemapViewControllerWidgetTableView"]
 
-        widgetTable.staticTexts["Widget Overview"].tap()
+        widgetTable.staticTexts["NSLocalizedString("widget_overview", comment: "Widget overview navigation label")"].tap()
         sleep(3)
-        widgetTable.staticTexts["BINARY WIDGETS"].swipeDown()
+        widgetTable.staticTexts["NSLocalizedString("binary_widgets", comment: "Binary widgets section header")"].swipeDown()
         sleep(6)
         snapshot("5_WidgetOverview")
 
         app.navigationBars.buttons.element(boundBy: 0).tap()
         sleep(2)
-        widgetTable.staticTexts["Ground Floor"].tap()
+        widgetTable.staticTexts["NSLocalizedString("ground_floor", comment: "Ground floor navigation label")"].tap()
         sleep(5)
-        widgetTable.staticTexts["Kitchen"].tap()
+        widgetTable.staticTexts["NSLocalizedString("kitchen", comment: "Kitchen room label")"].tap()
         sleep(5)
         snapshot("6_Kitchen")
 
