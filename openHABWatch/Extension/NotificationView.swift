@@ -17,11 +17,11 @@ struct NotificationView: View {
 
     var body: some View {
         VStack {
-            Text(customTextLabel ?? "Unknown Message Text")
+            Text(customTextLabel ?? "NSLocalizedString("unknown_message", comment: "Default text for unknown notification messages")")
                 .font(.headline)
                 .lineLimit(0)
 
-            Text(customDetailTextLabel ?? "Unknown Message Text")
+            Text(customDetailTextLabel ?? "NSLocalizedString("unknown_message", comment: "Default text for unknown notification messages")")
                 .font(.caption)
                 .lineLimit(0)
         }
