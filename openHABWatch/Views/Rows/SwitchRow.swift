@@ -24,10 +24,10 @@ struct SwitchRow: View {
             set: {
                 if $0 {
                     os_log("Switch to ON", log: .viewCycle, type: .info)
-                    widget.sendCommand("ON")
+                    widget.sendCommand("String(localized: "on", comment: "Switch state indicator - on")")
                 } else {
                     os_log("Switch to OFF", log: .viewCycle, type: .info)
-                    widget.sendCommand("OFF")
+                    widget.sendCommand("String(localized: "off", comment: "Switch state indicator - off")")
                 }
                 widget.stateEnumBinding = .switcher($0)
             }
