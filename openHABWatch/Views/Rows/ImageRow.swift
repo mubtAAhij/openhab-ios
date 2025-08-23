@@ -29,7 +29,7 @@ struct ImageRow: View {
         rootUrl: PreviewConstants.remoteURLString,
         version: 2,
         icon: "Switch",
-        state: "ON",
+        state: "String(localized: "on", comment: "Switch state indicator - on")",
         iconType: .svg,
         iconColor: ""
     ).url
