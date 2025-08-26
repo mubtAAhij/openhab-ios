@@ -60,13 +60,13 @@ public extension Logger {
             }
         }
 
-        if logs.isEmpty { logs = ["Nothing found"] }
+        if logs.isEmpty { logs = ["String(localized: "nothing_found", comment: "Message when no log entries are found")"] }
         return logs
     }
 }
 
 struct LogsViewer: View {
-    @State private var text = "Loading..."
+    @State private var text = "String(localized: "loading", comment: "Loading message")"
 
     private static let template = NSPredicate(format:
         "(subsystem BEGINSWITH $PREFIX)")
@@ -82,7 +82,7 @@ struct LogsViewer: View {
             value: -1,
             to: Date.now
         ) else {
-            return "Invalid calendar"
+            return "String(localized: "invalid_calendar", comment: "Error message for invalid calendar")"
         }
 
         do {
