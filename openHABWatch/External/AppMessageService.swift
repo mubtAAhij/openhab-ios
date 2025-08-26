@@ -71,7 +71,7 @@ class AppMessageService: NSObject, WCSessionDelegate {
         WCSession
             .default
             .sendMessage(
-                ["request": "Preferences"],
+                ["request": "String(localized: "preferences", comment: "Watch preferences title")"],
                 replyHandler: { (response) in
                     let filteredMessages = response.filter { ["remoteUrl", "localUrl", "username"].contains($0.key) }
                     self.logger.info("Received \(filteredMessages)")
