@@ -49,15 +49,15 @@ final class NumberStateTests: XCTestCase {
     }
 
     func testParseAs() throws {
-        XCTAssertEqual("ON".parseAsBool(), true)
+        XCTAssertEqual(NSLocalizedString("on", comment: "Switch on state").parseAsBool(), true)
         XCTAssertEqual("4,3,1".parseAsBrightness(), 1)
         XCTAssertEqual("4,31".parseAsBrightness(), nil)
         XCTAssertEqual("4,3,0".parseAsBool(), false)
         XCTAssertEqual("4,3,1".parseAsBool(), true)
         XCTAssertEqual("1".parseAsBool(), true)
         XCTAssertEqual("0".parseAsBool(), false)
-        XCTAssertEqual("ON".parseAsNumber(), NumberState(value: 100.0))
-        XCTAssertEqual("OFF".parseAsNumber(), NumberState(value: 0.0))
+        XCTAssertEqual(NSLocalizedString("on", comment: "Switch on state").parseAsNumber(), NumberState(value: 100.0))
+        XCTAssertEqual(NSLocalizedString("off", comment: "Switch off state").parseAsNumber(), NumberState(value: 0.0))
         XCTAssertEqual("24.4 °F".parseAsNumber(), NumberState(value: 24.4, unit: "°F", format: nil))
         XCTAssertEqual("24.4 °F".parseAsNumber(format: "%.f"), NumberState(value: 24.4, unit: "°F", format: "%.f"))
         let col1 = "Uninitialized".parseAsUIColor()
