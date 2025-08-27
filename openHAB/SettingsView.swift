@@ -61,7 +61,7 @@ struct SettingsView: View {
         Form {
             Section(header: Text(LocalizedStringKey("openhab_connection"))) {
                 Toggle(isOn: $settingsDemomode) {
-                    Text("Demo Mode")
+                    Text("String(localized: "demo_mode", comment: "Demo mode setting label")")
                 }
 
                 if !settingsDemomode {
