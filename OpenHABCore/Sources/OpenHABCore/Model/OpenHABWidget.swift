@@ -192,10 +192,10 @@ public class OpenHABWidget: NSObject, MKAnnotation, Identifiable {
                     if let brightness = itemState.parseAsBrightness() {
                         iconState = String(brightness)
                         if type == .switchWidget {
-                            iconState = iconState == "0" ? "OFF" : "ON"
+                            iconState = iconState == "0" ? String(localized: "off", comment: "OFF state for switch widget") : String(localized: "on", comment: "ON state for switch widget")
                         }
                     } else {
-                        iconState = "OFF"
+                        iconState = String(localized: "off", comment: "OFF state for widget icon")
                     }
                 } else if let color = itemState.parseAsUIColor() {
                     iconState = "#\(color.toHex() ?? "000000")"
@@ -204,7 +204,7 @@ public class OpenHABWidget: NSObject, MKAnnotation, Identifiable {
                 // For switch items without mappings (just ON and OFF) that control a dimmer item
                 // and which are not ON or OFF already, set the state to "OFF" instead of 0
                 // or to "ON" to fetch the correct icon
-                iconState = (itemState == "0" || itemState == "OFF") ? "OFF" : "ON"
+                iconState = (itemState == "0" || itemState == String(localized: "off", comment: "OFF state for switch widget mapping")) ? String(localized: "off", comment: "OFF state for switch widget mapping") : String(localized: "on", comment: "ON state for switch widget mapping")
             }
         }
         return iconState
